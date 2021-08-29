@@ -48,7 +48,7 @@
         "pkg install -y gmake ccache git flex bison readline p5-IPC-Run gettext screen htop vim-console",
         "pkg clean",
         "echo 'machdep.disable_tsc_calibration=1' >> /boot/loader.conf",
-        "echo 'machdep.disable_tsc_calibration=1' >> /boot/loader.conf",
+        "echo 'kern.timecounter.invariant_tsc=1' >> /boot/loader.conf",
         "echo 'kern.timecounter.hardware=TSC-low' >> /etc/sysctl.conf"
       ]
     }
