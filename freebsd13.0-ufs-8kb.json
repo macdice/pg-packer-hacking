@@ -1,0 +1,57 @@
+{
+  "builders": [
+    {
+      "boot_command": [
+       "<esc><wait10s><enter>",
+       "boot -s<enter>",
+       "<wait15s>",
+       "/bin/sh<enter><wait>",
+       "mdmfs -s 100m md /tmp<enter><wait>",
+       "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5s>",
+
+       "mkdir /tmp/sbin<enter>",
+       "fetch -o /tmp/sbin/newfs http://{{ .HTTPIP }}:{{ .HTTPPort }}/freebsd-newfs-wrapper<enter><wait5s>",
+       "chmod +x /tmp/sbin/newfs<enter>",
+
+       "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/freebsd-installerconfig<enter><wait5s>",
+       "PATH=/tmp/sbin:$PATH bsdinstall script /tmp/installerconfig<enter>"
+      ],
+
+      "boot_wait": "5s",
+      "disk_size": 20480,
+      "http_directory": "scripts",
+      "iso_url": "https://download.freebsd.org/ftp/releases/amd64/amd64/ISO-IMAGES/13.0/FreeBSD-13.0-RELEASE-amd64-disc1.iso",
+      "iso_checksum": "8f58360e4259a04a262bc345e6c16708331bec40ec2d596a5b60d53f05d566a13ccf1e322df92be61c040261230df2f41d311aac174d5820828322dbca904a8e",
+      "shutdown_command": "poweroff",
+
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_timeout": "10m",
+
+      "vm_name": "freebsd13-ufs-8kb",
+
+      "type": "qemu",
+      "accelerator": "kvm",
+      "format": "qcow2",
+
+      "memory": "4096"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "env {{.Vars}} /bin/sh '{{.Path}}'",
+      "environment_vars": [ "ASSUME_ALWAYS_YES=yes" ],
+      "inline": [
+        "pkg update",
+        "pkg upgrade -y",
+        "pkg install -y gmake ccache git flex bison readline p5-IPC-Run gettext screen htop vim-console",
+        "pkg clean",
+        "echo 'machdep.disable_tsc_calibration=1' >> /boot/loader.conf",
+        "echo 'machdep.disable_tsc_calibration=1' >> /boot/loader.conf",
+        "echo 'kern.timecounter.hardware=TSC-low' >> /etc/sysctl.conf"
+      ]
+    }
+  ]
+}
+

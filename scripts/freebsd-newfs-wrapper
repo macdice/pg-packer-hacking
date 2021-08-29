@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# It would be nice if bsdinstall responded to UFS_BLOCKSIZE and perhaps more
+# UFS options (the way it accepts various ZFS options), but for now, here's a
+# wrapper script for newfs that does it.
+
+if [ "$UFS_BLOCKSIZE" != "" ] ; then
+	EXTRA_OPTIONS="-b $UFS_BLOCKSIZE"
+fi
+
+exec /sbin/newfs $EXTRA_OPTIONS $@
