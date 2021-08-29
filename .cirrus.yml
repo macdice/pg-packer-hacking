@@ -9,9 +9,9 @@ task:
     cpu: 4
     memory: 8G
   hello_script:
-    echo ===mount===
+    echo '===mount==='
     mount
-    echo ===gpart===
+    echo '===gpart==='
     gpart list
-    echo ===fstab===
+    echo '===fstab==='
     cat /etc/fstab
