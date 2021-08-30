@@ -11,7 +11,7 @@ task:
     disk: 50
   hello_script:
     - sudo dmesg
-    - echo "==loader=="
+    - echo "==loader!=="
     - cat /boot/loader.conf || true
     - echo "==rc=="
     - cat /etc/rc.conf || true
