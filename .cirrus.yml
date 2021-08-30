@@ -10,13 +10,9 @@ task:
     memory: 8G
     disk: 50
   hello_script:
-    - sudo dmesg
+    - sudo gpart recover da0 # fix backup partition table after resize
+    - sudo swapoff -a || true # kill swap, so we can delete a partition
+    - sudo gpart delete -i 3 da0 # (apparently we can only have 4!?)
+    - sudo gpart add -t freebsd-ufs -l data8k -a 8192 da0
     - sudo gpart show da0
-    - sudo camcontrol reprobe da0
-    - sudo gpart recover da0
-    - sudo camcontrol reprobe da0
-    - sudo gpart commit da0 || true
-    - sudo gpart show da0
-    - sudo swapoff -a || true
-    - sudo gpart delete -i 3 da0
-    - sudo gpart add -t freebsd-ufs -l data8k -s 10G -a 8192 da0 || true
+    - sudo newfs -U -b 8192 /dev/da0p5
