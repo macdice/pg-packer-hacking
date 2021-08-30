@@ -17,4 +17,6 @@ task:
     - cat /etc/rc.conf || true
     - echo "==sysctl=="
     - sysctl -a | grep timecounter
+    - echo "==sysctl2=="
+    - sysctl -a | grep -i tsc
 
