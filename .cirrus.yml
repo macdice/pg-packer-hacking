@@ -15,3 +15,5 @@ task:
     - gpart list
     - echo '===fstab==='
     - cat /etc/fstab
+    - echo '===df==='
+    - df -h
