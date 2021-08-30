@@ -15,7 +15,7 @@ task:
     - cat /boot/loader.conf || true
     - echo "==rc=="
     - cat /etc/rc.conf || true
-    - echo "==sysctl=="
+    - echo "==sysctl!?=="
     - sysctl -a | grep timecounter
     - echo "==sysctl2=="
     - sysctl -a | grep -i tsc
