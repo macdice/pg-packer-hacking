@@ -13,6 +13,6 @@ task:
     - sudo gpart recover da0 # fix backup partition table after resize
     - sudo swapoff -a || true # kill swap, so we can delete a partition
     - sudo gpart delete -i 3 da0 # (apparently we can only have 4!?)
-    - sudo gpart add -t freebsd-ufs -l data8k -a 8192 da0
+    - sudo gpart add -t freebsd-ufs -l data8k -a 4096 da0
     - sudo gpart show da0
-    - sudo newfs -U -b 8192 /dev/da0p5
+    - sudo newfs -U -b 8192 /dev/da0p3
