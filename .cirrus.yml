@@ -10,9 +10,10 @@ task:
     memory: 8G
     disk: 50
   hello_script:
-    - sudo gpart recover da0 # fix backup partition table after resize
-    - sudo swapoff -a || true # kill swap, so we can delete a partition
-    - sudo gpart delete -i 3 da0 # (apparently we can only have 4!?)
-    - sudo gpart add -t freebsd-ufs -l data8k -a 4096 da0
-    - sudo gpart show da0
-    - sudo newfs -U -b 8192 /dev/da0p3
+    - echo "==loader=="
+    - cat /boot/loader.conf || true
+    - echo "==rc=="
+    - cat /etc/rc.conf || true
+    - echo "==sysctl=="
+    - sysctl -a | grep timecounter
+
