@@ -11,8 +11,8 @@ task:
     disk: 50
   hello_script:
     - sudo dmesg
-    - sudo gpart undo da0 || true
     - sudo gpart show da0
+    - sudo camcontrol reprobe da0
     - sudo gpart recover da0
     - sudo gpart show da0
     - sudo gpart add -t freebsd-ufs -l data8k da0 || true
