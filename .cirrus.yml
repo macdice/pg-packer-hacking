@@ -8,6 +8,7 @@ task:
     platform: freebsd
     cpu: 4
     memory: 8G
+    disk: 50
   hello_script:
     - echo '===mount==='
     - mount
