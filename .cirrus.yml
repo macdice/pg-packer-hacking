@@ -17,3 +17,7 @@ task:
     - cat /etc/fstab
     - echo '===df==='
     - df -h
+    - echo '===new partition==='
+    - sudo gpart add -t freebsd-ufs -l data8k
+    - echo '===gpart==='
+    - gpart list
