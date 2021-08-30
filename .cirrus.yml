@@ -10,6 +10,7 @@ task:
     memory: 8G
     disk: 50
   hello_script:
+    - sudo dmesg
     - echo "==loader=="
     - cat /boot/loader.conf || true
     - echo "==rc=="
