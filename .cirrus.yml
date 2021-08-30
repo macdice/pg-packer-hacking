@@ -11,15 +11,5 @@ task:
     disk: 50
   hello_script:
     - sudo dmesg
-    - echo '===mount==='
-    - sudo mount
-    - echo '===gpart==='
-    - sudo gpart list
-    - echo '===fstab==='
-    - sudo cat /etc/fstab
-    - echo '===df==='
-    - sudo df -h
-    - echo '===new partition==='
-    - sudo gpart add -t freebsd-ufs -l data8k da0
-    - echo '===gpart==='
-    - sudo gpart list
+    - sudo gpart show da0
+    - sudo gpart add -t freebsd-ufs -l data8k da0 || true
