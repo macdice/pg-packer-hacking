@@ -11,6 +11,7 @@ task:
     disk: 50
   hello_script:
     - sudo dmesg
+    - sudo gpart undo da0 || true
     - sudo gpart show da0
     - sudo gpart recover da0
     - sudo gpart show da0
