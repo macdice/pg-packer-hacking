@@ -17,6 +17,6 @@ task:
     - sudo camcontrol reprobe da0
     - sudo gpart commit da0 || true
     - sudo gpart show da0
-    - sudo swapoff /dev/da0p3
+    - sudo swapoff /dev/da0p3 || true
     - sudo gpart delete -i 3 da0
     - sudo gpart add -t freebsd-ufs -l data8k -s 10G -a 8192 da0 || true
