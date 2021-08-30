@@ -18,6 +18,6 @@ task:
     - echo '===df==='
     - df -h
     - echo '===new partition==='
-    - sudo gpart add -t freebsd-ufs -l data8k
+    - sudo gpart add -t freebsd-ufs -l data8k da0
     - echo '===gpart==='
     - gpart list
