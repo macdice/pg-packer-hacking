@@ -15,4 +15,4 @@ task:
     - sudo camcontrol reprobe da0
     - sudo gpart recover da0
     - sudo gpart show da0
-    - sudo gpart add -t freebsd-ufs -l data8k -i 5 -s 20G -a 4096 da0 || true
+    - sudo gpart add -t freebsd-ufs -l data8k -s 20G -a 4096 da0 || true
