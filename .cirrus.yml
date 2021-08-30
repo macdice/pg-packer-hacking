@@ -8,8 +8,9 @@ task:
     platform: freebsd
     cpu: 4
     memory: 8G
-    disk: 50G
+    disk: 50
   hello_script:
+    - sudo dmesg
     - echo '===mount==='
     - sudo mount
     - echo '===gpart==='
