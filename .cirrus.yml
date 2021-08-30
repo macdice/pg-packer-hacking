@@ -8,17 +8,17 @@ task:
     platform: freebsd
     cpu: 4
     memory: 8G
-    disk: 50
+    disk: 50G
   hello_script:
     - echo '===mount==='
-    - mount
+    - sudo mount
     - echo '===gpart==='
-    - gpart list
+    - sudo gpart list
     - echo '===fstab==='
-    - cat /etc/fstab
+    - sudo cat /etc/fstab
     - echo '===df==='
-    - df -h
+    - sudo df -h
     - echo '===new partition==='
     - sudo gpart add -t freebsd-ufs -l data8k da0
     - echo '===gpart==='
-    - gpart list
+    - sudo gpart list
