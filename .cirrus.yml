@@ -12,4 +12,6 @@ task:
   hello_script:
     - sudo dmesg
     - sudo gpart show da0
+    - sudo gpart recover da0
+    - sudo gpart show da0
     - sudo gpart add -t freebsd-ufs -l data8k da0 || true
